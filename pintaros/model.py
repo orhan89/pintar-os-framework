@@ -12,11 +12,10 @@ class Model:
 
     _columns = {}
 
-    _ordered_columns = OrderedDict(sorted(_columns.items(), key=lambda t: t[0]))
-
     def __init__(self):
         global model_pool
         model_pool[self._name] = self
+        self._ordered_columns = OrderedDict(sorted(self._columns.items(), key=lambda t: t[0]))
         
     def install(self):
         reader.select_file(0x3f00)
